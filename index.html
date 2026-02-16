@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EcoTec | industriële lucht & reiniging · bright & alive</title>
+  <!-- Font Awesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- Google Fonts: Inter clean -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #ffffff;        /* changed to white */
+      color: #1e2f3e;
+      line-height: 1.5;
+    }
+
+    /* bright theme variables */
+    :root {
+      --primary-dark: #0b3b4b;
+      --primary-soft: #2c5f7a;
+      --accent: #f39c4b;
+      --accent-light: #fae4d1;
+      --card-bg: #ffffff;
+      --bg-light: #f2f6fb;
+      --border-light: #d4e2f0;
+      --shadow-sm: 0 12px 30px -10px rgba(0,40,60,0.15);
+      --shadow-hover: 0 25px 40px -12px rgba(243,156,75,0.3);
+    }
+
+    /* animations */
+    @keyframes softPulse {
+      0% { opacity: 0.9; filter: drop-shadow(0 0 0 var(--accent)); }
+      50% { opacity: 1; filter: drop-shadow(0 0 5px var(--accent)); }
+      100% { opacity: 0.9; filter: drop-shadow(0 0 0 var(--accent)); }
+    }
+    @keyframes moveGradient {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    .pulse-icon {
+      animation: softPulse 3s infinite ease-in-out;
+    }
+    .moving-bg {
+      background: linear-gradient(45deg, #f9fcff, #e9f2fa, #f9fcff);
+      background-size: 200% 200%;
+      animation: moveGradient 12s ease infinite;
+    }
+
+    .wrapper {
+      max-width: 100%;
+      margin: 0 auto;            /* no top/bottom margin – background removed */
+      background: white;
+      /* border-radius: 2.5rem; */
+      overflow: hidden;
+      box-shadow: 0 30px 50px -20px rgba(0,30,50,0.2);
+    }
+
+    .top-trust {
+      background: var(--primary-dark);
+      color: #e3f0f9;
+      padding: 0.75rem 2.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      font-size: 0.9rem;
+      letter-spacing: 0.3px;
+      border-bottom: 3px solid var(--accent);
+    }
+    .top-trust i { 
+      color: var(--accent); 
+      margin-right: 8px;
+    }
+
+    .header-main {
+      background: white;
+      padding: 1.2rem 2.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border-light);
+    }
+    .logo-block {
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+    }
+    .logo-icon {
+      background: var(--primary-dark);
+      width: 65px;
+      height: 65px;
+      border-radius: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: var(--accent);
+      box-shadow: 0 10px 15px -8px var(--primary-dark);
+      border: 2px solid var(--accent);
+      transition: transform 0.3s;
+    }
+    .logo-icon:hover {
+      transform: rotate(3deg) scale(1.05);
+    }
+    .logo-text h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--primary-dark);
+      line-height: 1.1;
+      letter-spacing: -0.5px;
+    }
+    .logo-tagline {
+      font-size: 0.9rem;
+      color: #597a95;
+      font-weight: 500;
+    }
+
+    .lang-switch {
+      background: #e7f0f8;
+      border-radius: 50px;
+      padding: 0.3rem;
+      display: flex;
+      box-shadow: inset 0 1px 5px rgba(0,0,0,0.05);
+    }
+    .lang-btn {
+      border: none;
+      background: transparent;
+      padding: 0.7rem 2.2rem;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 1rem;
+      color: #2a577b;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .lang-btn.active {
+      background: var(--accent);
+      color: white;
+      box-shadow: 0 6px 12px #f39c4b80;
+    }
+    .lang-btn:not(.active):hover {
+      background: #d1e1ee;
+    }
+
+    .nav-bar {
+      background: white;
+      padding: 0.8rem 2.5rem;
+      display: flex;
+      gap: 2.8rem;
+      border-bottom: 1px solid var(--border-light);
+      font-weight: 600;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(8px);
+    }
+    .nav-bar a {
+      text-decoration: none;
+      color: #1e4c6b;
+      border-bottom: 3px solid transparent;
+      padding-bottom: 6px;
+      transition: 0.2s;
+    }
+    .nav-bar a:hover {
+      border-bottom-color: var(--accent);
+      color: var(--primary-dark);
+    }
+
+    /* HERO */
+    .hero {
+      background: white;
+      padding: 3rem 2.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      align-items: center;
+    }
+    .hero-content {
+      flex: 1 1 400px;
+    }
+    .hero-nl h2, .hero-en h2 {
+      font-size: 3rem;
+      font-weight: 300;
+      line-height: 1.2;
+      color: var(--primary-dark);
+      margin-bottom: 1.5rem;
+    }
+    .hero-nl h2 strong, .hero-en h2 strong {
+      font-weight: 800;
+      color: var(--accent);
+    }
+    .hero-desc {
+      font-size: 1.2rem;
+      color: #3a617c;
+      margin: 1.8rem 0 2.5rem;
+      border-left: 4px solid var(--accent);
+      padding-left: 1.5rem;
+      background: #f3f8ff;
+      border-radius: 0 12px 12px 0;
+      padding: 1rem 1.5rem;
+    }
+    .cta-big {
+      background: var(--accent);
+      border: 2px solid var(--accent);
+      color: white;
+      padding: 1.1rem 3rem;
+      border-radius: 60px;
+      font-weight: 700;
+      font-size: 1.2rem;
+      box-shadow: 0 18px 25px -12px var(--accent);
+      cursor: pointer;
+      transition: 0.25s;
+    }
+    .cta-big:hover {
+      background: white;
+      color: var(--accent);
+      transform: translateY(-3px);
+      box-shadow: 0 25px 30px -12px var(--accent);
+    }
+    .hero-image {
+      flex: 1 1 400px;
+      border-radius: 2rem;
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+    }
+    .hero-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* sections */
+    .section {
+      padding: 4rem 2.5rem;
+      background: white;
+    }
+    .section:nth-child(even) {
+      background: #f7fafd;
+    }
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+      margin-bottom: 2.5rem;
+    }
+    .section-title .accent {
+      width: 10px;
+      height: 50px;
+      background: var(--accent);
+      border-radius: 10px;
+    }
+    .section-title h3 {
+      font-size: 2.4rem;
+      font-weight: 700;
+      color: var(--primary-dark);
+      letter-spacing: -0.5px;
+    }
+    .section-title span {
+      color: #6a8ca5;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      font-size: 0.9rem;
+      background: #e3eef9;
+      padding: 0.3rem 1rem;
+      border-radius: 30px;
+      margin-left: auto;
+    }
+
+    /* grids */
+    .grid-2, .grid-3, .grid-4 {
+      display: grid;
+      gap: 2rem;
+    }
+    .grid-2 { grid-template-columns: repeat(auto-fit, minmax(350px,1fr)); }
+    .grid-3 { grid-template-columns: repeat(auto-fit, minmax(280px,1fr)); }
+    .grid-4 { grid-template-columns: repeat(auto-fit, minmax(240px,1fr)); }
+
+    /* cards with images */
+    .card {
+      background: var(--card-bg);
+      border-radius: 2rem;
+      padding: 2rem;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--border-light);
+      transition: 0.3s ease;
+    }
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-hover);
+      border-color: var(--accent);
+    }
+    .card-img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 1.2rem;
+      margin-bottom: 1.5rem;
+      border: 1px solid #dae8f2;
+    }
+    .card i { 
+      font-size: 2.5rem; 
+      color: var(--accent); 
+      margin-bottom: 1rem;
+      display: inline-block;
+    }
+    /* icon pulse */
+    .card i, .list-icon i {
+      animation: softPulse 4s infinite;
+    }
+
+    .list-icon {
+      list-style: none;
+    }
+    .list-icon li { 
+      margin-bottom: 0.8rem;
+      display: flex;
+      align-items: center;
+    }
+    .list-icon i { 
+      font-size: 1.2rem; 
+      width: 2rem; 
+      color: var(--accent);
+    }
+
+    .badge {
+      background: #eef4f9;
+      color: var(--primary-dark);
+      padding: 0.4rem 1.4rem;
+      border-radius: 40px;
+      font-weight: 600;
+      font-size: 0.85rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    /* testimonial */
+    .testimonial {
+      background: white;
+      border-radius: 2rem;
+      padding: 2rem;
+      border: 1px solid var(--border-light);
+      box-shadow: var(--shadow-sm);
+      position: relative;
+    }
+    .testimonial i {
+      font-size: 2rem;
+      color: var(--accent);
+      opacity: 0.3;
+      position: absolute;
+      top: 1.5rem;
+      right: 1.5rem;
+    }
+    .author {
+      color: var(--primary-dark);
+      font-weight: 600;
+      margin-top: 1.5rem;
+    }
+
+    .contact-block {
+      background: linear-gradient(145deg, #ffffff 0%, #f3faff 100%);
+      border-radius: 2.5rem;
+      padding: 3.5rem;
+      color: var(--primary-dark);
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--border-light);
+    }
+
+    footer {
+      background: #0e2e3f;
+      color: #cde1f0;
+      padding: 3rem 2.5rem 1.8rem;
+      border-top: 4px solid var(--accent);
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
+      gap: 2.5rem;
+    }
+    .footer-grid h5 {
+      color: white;
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+    }
+    .footer-bottom {
+      border-top: 1px solid #255470;
+      margin-top: 2.5rem;
+      padding-top: 1.8rem;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      font-size: 0.9rem;
+    }
+
+    /* language toggle */
+    [data-lang="nl"], [data-lang="en"] {
+      display: none !important;
+    }
+    body.lang-nl [data-lang="nl"] {
+      display: block !important;
+    }
+    body.lang-en [data-lang="en"] {
+      display: block !important;
+    }
+    body.lang-nl [data-lang="nl"].inline-span,
+    body.lang-en [data-lang="en"].inline-span {
+      display: inline !important;
+    }
+    body.lang-nl [data-lang="nl"].flex-item,
+    body.lang-en [data-lang="en"].flex-item {
+      display: flex !important;
+    }
+    body.lang-nl [data-lang="nl"].grid-item,
+    body.lang-en [data-lang="en"].grid-item {
+      display: grid !important;
+    }
+    .inline-span { display: inline !important; }
+
+    @media (max-width: 768px) {
+      .hero-nl h2, .hero-en h2 { font-size: 2.2rem; }
+      .section-title h3 { font-size: 1.8rem; }
+    }
+  </style>
+</head>
+<body class="lang-nl">
+<div class="wrapper moving-bg">
+
+  <!-- top trust (bilingual) -->
+  <div class="top-trust">
+    <span><i class="fas fa-certificate pulse-icon"></i> <span data-lang="nl" class="inline-span">ISO 14001 · VCA** gecertificeerd</span><span data-lang="en" class="inline-span">ISO 14001 · VCA** certified</span></span>
+    <span><i class="fas fa-id-card pulse-icon"></i> <span data-lang="nl" class="inline-span">BEL 592-5348409-07 | GB5208840</span><span data-lang="en" class="inline-span">BEL 592-5348409-07 | GB5208840</span></span>
+    <span><i class="fas fa-phone-alt pulse-icon"></i> <span data-lang="nl" class="inline-span">24/7 service: +32 (0)3 123 45 67</span><span data-lang="en" class="inline-span">24/7 support: +32 (0)3 123 45 67</span></span>
+  </div>
+
+  <!-- header with logo (bilingual) -->
+  <div class="header-main">
+    <div class="logo-block">
+      <div class="logo-icon"><span>E</span></div>
+      <div class="logo-text">
+        <h1>ECOTEC<span data-lang="nl" class="inline-span"> industrial</span><span data-lang="en" class="inline-span"> industrial</span></h1>
+        <div class="logo-tagline" data-lang="nl">afzuiglucht · rto · droogijsreiniging · onderhoud</div>
+        <div class="logo-tagline" data-lang="en">exhaust air · rto · dry ice cleaning · maintenance</div>
+      </div>
+    </div>
+    <div class="lang-switch">
+      <button class="lang-btn active" data-lang-target="nl">NL</button>
+      <button class="lang-btn" data-lang-target="en">EN</button>
+    </div>
+  </div>
+
+  <!-- NAVIGATION BAR – ONLY ENGLISH (fixed) -->
+  <div class="nav-bar">
+    <a href="#">Home</a>
+    <a href="#rto">RTO</a>
+    <a href="#exhaust">Exhaust</a>
+    <a href="#cleaning">Cleaning</a>
+    <a href="#dryice">Dry ice</a>
+    <a href="#cases">Cases</a>
+    <a href="#contact">Contact</a>
+  </div>
+
+  <!-- HERO (bilingual) -->
+  <div class="hero">
+    <div class="hero-content">
+      <div data-lang="nl">
+        <h2><strong>Slimmer, schoner</strong> en <strong>efficiënter</strong> produceren? <br>Wij helpen u verder.</h2>
+        <div class="hero-desc">In industriële omgevingen draait alles om betrouwbaarheid, continuïteit en efficiëntie. Installaties die niet optimaal presteren, kosten ongemerkt veel geld — door hoger energieverbruik, onnodige stilstand of versnelde slijtage. Wij helpen bedrijven om dat te voorkomen én te verbeteren.</div>
+      </div>
+      <div data-lang="en">
+        <h2><strong>Smarter, cleaner,</strong> and <strong>more efficient</strong> production? <br>We can help.</h2>
+        <div class="hero-desc">In industrial environments, reliability, continuity, and efficiency are paramount. Systems that don't perform optimally cost a lot of money without you even realizing it — due to higher energy consumption, unnecessary downtime, or accelerated wear and tear. We help companies prevent and improve these issues.</div>
+      </div>
+      <button class="cta-big"><i class="fas fa-chart-line"></i> <span data-lang="nl" class="inline-span">GRATIS ANALYSE</span><span data-lang="en" class="inline-span">FREE ANALYSIS</span></button>
+    </div>
+    <div class="hero-image">
+      <img src="https://picsum.photos/id/1043/600/400?grayscale" alt="Industrial plant" loading="lazy">
+    </div>
+  </div>
+
+  <!-- RTO SECTION -->
+  <div class="section" id="rto">
+    <div class="section-title"><div class="accent"></div><h3 data-lang="nl">Keramische honingraatverwarmers in RTO-systemen</h3><h3 data-lang="en">Honeycomb ceramic heaters in RTO systems</h3><span>RTO2</span></div>
+    <div class="grid-2">
+      <div class="card">
+        <img class="card-img" src="https://picsum.photos/id/1044/600/400?grayscale" alt="RTO ceramic heaters" loading="lazy">
+        <i class="fas fa-fire"></i>
+        <div data-lang="nl"><strong>Maximale prestaties uit uw RTO-installatie</strong> — Keramische honingraatverwarmers zijn het hart van uw RTO-systeem. Wanneer deze vervuild of beschadigd raken, daalt de efficiëntie en lopen energiekosten snel op. Door gerichte inspecties, onderhoud en tijdige vervanging zorgen wij ervoor dat uw RTO-installatie blijft presteren zoals bedoeld: betrouwbaar, veilig en energiezuinig.</div>
+        <div data-lang="en"><strong>Maximum performance from your RTO system</strong> — Ceramic honeycomb heaters are the heart of your RTO system. When they become contaminated or damaged, efficiency decreases and energy costs quickly rise. Through targeted inspections, maintenance, and timely replacement, we ensure that your RTO system continues to perform as intended: reliably, safely, and energy-efficiently.</div>
+      </div>
+      <div class="card">
+        <img class="card-img" src="https://picsum.photos/id/1045/600/400?grayscale" alt="Maintenance" loading="lazy">
+        <i class="fas fa-exchange-alt"></i>
+        <h4 data-lang="nl">Wanneer vervangen?</h4>
+        <h4 data-lang="en">When to replace?</h4>
+        <ul class="list-icon">
+          <li><i class="fas fa-temperature-low"></i> <span data-lang="nl">Verminderde prestaties / temperatuurdaling</span><span data-lang="en">Performance decrease / temperature drop</span></li>
+          <li><i class="fas fa-exclamation-triangle"></i> <span data-lang="nl">Fysieke schade: scheuren, afsplinteringen</span><span data-lang="en">Physical damage: cracks, chips</span></li>
+          <li><i class="fas fa-power-off"></i> <span data-lang="nl">Regelmatig uitvallen of defecten</span><span data-lang="en">Frequent failures or trips</span></li>
+        </ul>
+        <div class="badge" style="margin-top:1rem;" data-lang="nl">Gemiddelde levensduur: meerdere jaren, afhankelijk van gebruik</div>
+        <div class="badge" style="margin-top:1rem;" data-lang="en">Typical lifespan: several years, depending on usage</div>
+      </div>
+    </div>
+    <!-- onderhoudstips -->
+    <div style="margin-top:2.5rem; background:#eaf3fb; border-radius:2rem; padding:2rem;">
+      <div style="display:flex; align-items:center; gap:1rem; margin-bottom:1rem;">
+        <i class="fas fa-clipboard-check" style="font-size:2rem; color:var(--accent);"></i>
+        <h4 style="color:var(--primary-dark); font-size:1.5rem;" data-lang="nl">Onderhoudstips</h4>
+        <h4 style="color:var(--primary-dark); font-size:1.5rem;" data-lang="en">Maintenance tips</h4>
+      </div>
+      <span data-lang="nl">Regelmatige inspecties, reinigen (voorkom ophoping), bewaking van bedrijfsomstandigheden (temperatuurbereiken).</span>
+      <span data-lang="en">Regular inspections, cleaning (prevents buildup), monitor operating conditions (temperature ranges).</span>
+    </div>
+  </div>
+
+  <!-- AFZUIGLUCHTZUIVERING -->
+  <div class="section" style="background:#f7fafd;" id="exhaust">
+    <div class="section-title"><div class="accent"></div><h3 data-lang="nl">Afzuigluchtzuiveringssysteem</h3><h3 data-lang="en">Exhaust air cleaning system</h3><span>VOC</span></div>
+    <div class="grid-2">
+      <div class="card">
+        <img class="card-img" src="https://picsum.photos/id/1048/600/400?grayscale" alt="Exhaust system" loading="lazy">
+        <i class="fas fa-wind"></i>
+        <p data-lang="nl">De controle van het afzuigluchtzuiveringssysteem dient om de conditie van het systeem te beoordelen en potentiële besparingen te identificeren. De behandeling van VOC-emissies brengt doorgaans hoge operationele kosten met zich mee vanwege het elektriciteits- en aardgasverbruik. Een verhoogd verbruik van actieve kool kan ook leiden tot extra kosten. Afzuigluchtzuiveringssystemen zijn ontworpen voor specifieke productieomstandigheden. Veranderingen in de productie in de loop der tijd kunnen leiden tot hogere operationele kosten.</p>
+        <p data-lang="en">The exhaust air cleaning system check serves to assess the condition of the system and identify potential savings. Treatment of VOC emissions typically incurs high operating costs due to electricity and natural gas consumption. Increased activated carbon consumption can also lead to additional costs. Exhaust air cleaning systems are designed for specific production conditions. Changes in production over time can lead to increased operating costs.</p>
+      </div>
+      <div class="card">
+        <img class="card-img" src="https://picsum.photos/id/1049/600/400?grayscale" alt="Savings" loading="lazy">
+        <i class="fas fa-euro-sign"></i>
+        <h4 data-lang="nl">Vijfcijferige besparingen</h4>
+        <h4 data-lang="en">Five‑figure savings</h4>
+        <p data-lang="nl">De controle maakt het mogelijk om potentiële besparingen te identificeren, vaak in de vijfcijferige bedragen per jaar. Door analyse van de huidige conditie kunnen optimalisatiebehoeften worden vastgesteld.</p>
+        <p data-lang="en">The check allows for the identification of potential savings, often in the five-figure range per year. By analyzing the current condition, optimization needs can be highlighted.</p>
+        <div style="margin-top:1.5rem; display:flex; gap:0.8rem; flex-wrap:wrap;">
+          <span class="badge"><i class="fas fa-sync"></i> <span data-lang="nl">onderhoud</span><span data-lang="en">maintenance</span></span>
+          <span class="badge"><i class="fas fa-tools"></i> <span data-lang="nl">reparaties</span><span data-lang="en">repairs</span></span>
+          <span class="badge"><i class="fas fa-chart-line"></i> <span data-lang="nl">optimalisaties</span><span data-lang="en">optimizations</span></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- REINIGING PRODUCTIEMACHINES -->
+  <div class="section" id="cleaning">
+    <div class="section-title"><div class="accent"></div><h3 data-lang="nl">Reiniging van productiemachines</h3><h3 data-lang="en">Cleaning production machines</h3><span>CIP/WIP</span></div>
+    <div class="grid-3">
+      <div class="card">
+        <img class="card-img" src="https://picsum.photos/id/1050/600/400?grayscale" alt="Automated cleaning" loading="lazy">
+        <i class="fas fa-robot"></i>
+        <h4 data-lang="nl">Geautomatiseerde systemen (CIP/WIP)</h4>
+        <h4 data-lang="en">Automated systems (CIP/WIP)</h4>
+        <p data-lang="nl">Deze systemen zijn ontworpen voor efficiëntie en gebruiken vaak chemicaliën en water onder hoge druk om apparatuur te reinigen zonder handmatige tussenkomst.</p>
+        <p data-lang="en">These systems are designed for efficiency and often use chemicals and high-pressure water to clean equipment without manual intervention.</p>
+      </div>
+      <div class="card">
+        <img class="card-img" src="https://picsum.photos/id/1051/600/400?grayscale" alt="Manual cleaning" loading="lazy">
+        <i class="fas fa-hand-sparkles"></i>
+        <h4 data-lang="nl">Handmatige reiniging</h4>
+        <h4 data-lang="en">Manual cleaning</h4>
+        <p data-lang="nl">In gevallen waar geen geautomatiseerde systemen beschikbaar zijn, omvat handmatige reiniging het aanbrengen van reinigingsmiddelen en het schrobben van oppervlakken om resten te verwijderen.</p>
+        <p data-lang="en">In cases where automated systems are not available, manual cleaning involves applying detergents and scrubbing surfaces to remove residues.</p>
+      </div>
+      <div class="card">
+        <img class="card-img" src="https://picsum.photos/id/1052/600/400?grayscale" alt="TACT parameters" loading="lazy">
+        <i class="fas fa-flask"></i>
+        <h4 data-lang="nl">Belangrijke parameters (TACT)</h4>
+        <h4 data-lang="en">Key parameters (TACT)</h4>
+        <p data-lang="nl">Effectiviteit hangt af van Tijd, Actie, Chemie en Temperatuur. Materiaalcompatibiliteit (RVS) en veiligheid zijn cruciaal.</p>
+        <p data-lang="en">Effectiveness depends on Time, Action, Chemistry, and Temperature. Material compatibility (stainless steel) and safety are crucial.</p>
+      </div>
+    </div>
+    <div style="margin-top:2.5rem; background:#e6f0f7; border-radius:2rem; padding:2rem;">
+      <div style="display:flex; align-items:center; gap:1rem; margin-bottom:1rem;">
+        <i class="fas fa-exclamation-circle" style="font-size:2rem; color:var(--accent);"></i>
+        <h4 style="color:var(--primary-dark);" data-lang="nl">Belang van regelmatige reiniging</h4>
+        <h4 style="color:var(--primary-dark);" data-lang="en">Importance of regular cleaning</h4>
+      </div>
+      <span data-lang="nl">Voorkomt stilstand, behoudt kwaliteit, naleving van regelgeving (hygiënenormen).</span>
+      <span data-lang="en">Prevents downtime, maintains quality, compliance with regulations (hygiene standards).</span>
+    </div>
+  </div>
+
+  <!-- DROOGIJS -->
+  <div class="section" style="background:#f7fafd;" id="dryice">
+    <div class="section-title"><div class="accent"></div><h3 data-lang="nl">Industriële reiniging met droogijs</h3><h3 data-lang="en">Dry ice industrial cleaning</h3><span>CO₂</span></div>
+    <div class="grid-2">
+      <div class="card">
+        <img class="card-img" src="https://picsum.photos/id/1053/600/400?grayscale" alt="Dry ice blasting" loading="lazy">
+        <i class="fas fa-snowflake"></i>
+        <p data-lang="nl">Industriële reiniging met droogijs, ook wel droogijsstralen genoemd, is een reinigingsmethode waarbij vaste koolstofdioxidekorrels, versneld door perslucht, worden gebruikt om oppervlakken te reinigen. Deze techniek is niet-schurend, milieuvriendelijk en produceert geen secundair afval.</p>
+        <p data-lang="en">Dry ice industrial cleaning, also known as dry ice blasting, is a cleaning method that uses solid carbon dioxide pellets accelerated by compressed air to clean surfaces. This technique is non-abrasive, environmentally friendly, and does not produce secondary waste.</p>
+      </div>
+      <div class="card">
+        <img class="card-img" src="https://picsum.photos/id/1054/600/400?grayscale" alt="Applications" loading="lazy">
+        <i class="fas fa-leaf"></i>
+        <h4 data-lang="nl">Kenmerken & toepassingen</h4>
+        <h4 data-lang="en">Features & applications</h4>
+        <ul class="list-icon">
+          <li><i class="fas fa-check"></i> <span data-lang="nl">Niet-schurend / niet-beschadigend</span><span data-lang="en">Non-abrasive / non-damaging</span></li>
+          <li><i class="fas fa-check"></i> <span data-lang="nl">Geen chemicaliën, geen secundair afval</span><span data-lang="en">No chemicals, no secondary waste</span></li>
+          <li><i class="fas fa-utensils"></i> <span data-lang="nl">Voedingsindustrie, automotive, luchtvaart, restauratie</span><span data-lang="en">Food, automotive, aerospace, restoration</span></li>
+        </ul>
+      </div>
+    </div>
+    <div style="margin-top:2.5rem; display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:1rem;">
+      <div class="badge" style="background:#dbeafe; padding:0.8rem;"><i class="fas fa-car"></i> <span data-lang="nl">automotive — roest / vuil</span><span data-lang="en">automotive — rust / grime</span></div>
+      <div class="badge" style="background:#dbeafe; padding:0.8rem;"><i class="fas fa-plane"></i> <span data-lang="nl">luchtvaart — gevoelige onderdelen</span><span data-lang="en">aerospace — sensitive parts</span></div>
+      <div class="badge" style="background:#dbeafe; padding:0.8rem;"><i class="fas fa-fire-extinguisher"></i> <span data-lang="nl">restauratie — roet / rook</span><span data-lang="en">restoration — soot / smoke</span></div>
+    </div>
+  </div>
+
+  <!-- WAAROM KLANTEN -->
+  <div class="section">
+    <div class="section-title"><div class="accent"></div><h3 data-lang="nl">Waarom klanten voor ons kiezen</h3><h3 data-lang="en">Why customers choose us</h3></div>
+    <div class="grid-4">
+      <div class="card"><i class="fas fa-bolt"></i> <span data-lang="nl">Praktische oplossingen met direct resultaat</span><span data-lang="en">Practical solutions with immediate results</span></div>
+      <div class="card"><i class="fas fa-euro-sign"></i> <span data-lang="nl">Minder energieverbruik en lagere onderhoudskosten</span><span data-lang="en">Reduced energy consumption and lower maintenance costs</span></div>
+      <div class="card"><i class="fas fa-clock"></i> <span data-lang="nl">Snelle inzet, minimale stilstand</span><span data-lang="en">Rapid deployment, minimal downtime</span></div>
+      <div class="card"><i class="fas fa-recycle"></i> <span data-lang="nl">Duurzaam, veilig en toekomstgericht</span><span data-lang="en">Sustainable, safe, and future-oriented</span></div>
+    </div>
+  </div>
+
+  <!-- CASES -->
+  <div class="section" id="cases" style="background:#f2f8ff;">
+    <div class="section-title"><div class="accent"></div><h3 data-lang="nl">Succesverhalen</h3><h3 data-lang="en">Success stories</h3><span>cases</span></div>
+    <div class="grid-3">
+      <div class="testimonial">
+        <i class="fas fa-quote-right"></i>
+        <span data-lang="nl">"Bij een chemisch bedrijf €18.500 bespaard door RTO-optimalisatie."</span>
+        <span data-lang="en">"Saved €18,500 at a chemical plant through RTO optimization."</span>
+        <div class="author">— Project 2024</div>
+      </div>
+      <div class="testimonial">
+        <i class="fas fa-quote-right"></i>
+        <span data-lang="nl">"Droogijsreiniging reduceerde stilstand met 3 dagen."</span>
+        <span data-lang="en">"Dry ice cleaning reduced downtime by 3 days."</span>
+        <div class="author">— Food producer</div>
+      </div>
+      <div class="testimonial">
+        <i class="fas fa-quote-right"></i>
+        <span data-lang="nl">"Vervanging keramiek RTO2 leidde tot 22% lager gasverbruik."</span>
+        <span data-lang="en">"RTO2 ceramic replacement led to 22% lower gas consumption."</span>
+        <div class="author">— Logistics center</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTACT -->
+  <div class="section" id="contact">
+    <div class="contact-block">
+      <div style="max-width:800px; margin:0 auto; text-align:center;">
+        <h4 style="font-size:2.2rem; font-weight:600; color:var(--primary-dark); margin-bottom:1.5rem;" data-lang="nl">Wilt u weten waar uw installatie beter kan presteren?</h4>
+        <h4 style="font-size:2.2rem; font-weight:600; color:var(--primary-dark); margin-bottom:1.5rem;" data-lang="en">Want to know where your system can perform better?</h4>
+        <p style="margin:1.5rem 0; font-size:1.2rem; color:#34657f;" data-lang="nl">Wij denken graag met u mee. Neem contact met ons op voor een vrijblijvende analyse en ontdek hoeveel winst er te behalen valt — in prestaties, kosten én rust.</p>
+        <p style="margin:1.5rem 0; font-size:1.2rem; color:#34657f;" data-lang="en">We'd love to brainstorm with you. Contact us for a free analysis and discover how much you can gain — in performance, costs, and peace of mind.</p>
+        <div style="display:flex; gap:1.5rem; flex-wrap:wrap; justify-content:center; margin:2.5rem 0;">
+          <span style="background:var(--accent); color:white; padding:1rem 2.5rem; border-radius:60px; font-weight:700; display:inline-flex; align-items:center; gap:0.8rem;">
+            <i class="fas fa-phone-alt"></i> +32 (0)3 123 45 67
+          </span>
+          <span style="background:var(--accent); color:white; padding:1rem 2.5rem; border-radius:60px; font-weight:700; display:inline-flex; align-items:center; gap:0.8rem;">
+            <i class="fas fa-envelope"></i> info@ecotec.be
+          </span>
+        </div>
+        <div style="display:flex; gap:2rem; justify-content:center; flex-wrap:wrap; font-size:0.9rem; color:#4e6f88;">
+          <span><i class="fas fa-id-card"></i> Jasim Hazem Redha · Bagdad 14 FEB 1965</span>
+          <span><i class="fas fa-handshake"></i> Partner: SCHOLT www.scholtkranz.de</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-grid">
+      <div>
+        <h5>ECOTEC</h5>
+        <p><i class="fas fa-map-marker-alt"></i> Antwerpen · Brussel · Gent</p>
+        <p><i class="fas fa-id-card"></i> BTW BE 0xxx.xxx.xxx</p>
+      </div>
+      <div>
+        <h5 data-lang="nl">Navigatie</h5>
+        <h5 data-lang="en">Navigation</h5>
+        <p><a href="#" style="color:#b5cfdf; text-decoration:none;">Home</a> · <a href="#rto" style="color:#b5cfdf; text-decoration:none;">RTO</a> · <a href="#" style="color:#b5cfdf; text-decoration:none;">Diensten</a></p>
+      </div>
+      <div>
+        <h5 data-lang="nl">Ontbrekende elementen</h5>
+        <h5 data-lang="en">Missing items</h5>
+        <p data-lang="nl">logo vector, foto's, certificaten, team, referenties</p>
+        <p data-lang="en">vector logo, photos, certificates, team, references</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 ECOTEC — mockup o.b.v. alle documenten</span>
+      <span data-lang="nl">alle teksten uit de meegeleverde bestanden</span>
+      <span data-lang="en">all texts from the provided documents</span>
+    </div>
+  </footer>
+</div>
+
+<!-- LANGUAGE SWITCHER -->
+<script>
+  (function() {
+    document.addEventListener('DOMContentLoaded', function() {
+      const buttons = document.querySelectorAll('.lang-btn');
+      const body = document.body;
+
+      function setActiveLanguage(lang) {
+        buttons.forEach(btn => {
+          if (btn.getAttribute('data-lang-target') === lang) {
+            btn.classList.add('active');
+          } else {
+            btn.classList.remove('active');
+          }
+        });
+        body.classList.remove('lang-nl', 'lang-en');
+        body.classList.add(`lang-${lang}`);
+        document.documentElement.lang = lang;
+        localStorage.setItem('preferred-language', lang);
+      }
+
+      const savedLang = localStorage.getItem('preferred-language');
+      if (savedLang && (savedLang === 'nl' || savedLang === 'en')) {
+        setActiveLanguage(savedLang);
+      }
+
+      buttons.forEach(btn => {
+        btn.addEventListener('click', function(e) {
+          e.preventDefault();
+          const lang = this.getAttribute('data-lang-target');
+          setActiveLanguage(lang);
+        });
+      });
+    });
+  })();
+</script>
+</body>
+</html>
